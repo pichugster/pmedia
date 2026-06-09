@@ -1,0 +1,24 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides", ({ data }) => !data.draft);
+  return guides.map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await guide.render();
+const dateStr = guide.data.date.toLocaleDateString("ru-RU", { year: "numeric", month: "long", day: "numeric" });
+---
+<Base title={`${guide.data.title} · pichugster`} description={guide.data.description}>
+  <article class="article">
+    <a class="back" href="/gaydy">← Все гайды</a>
+    <span class="cat">{guide.data.category}</span>
+    <h1>{guide.data.title}</h1>
+    <div class="meta">{dateStr}</div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

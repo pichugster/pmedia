@@ -1,0 +1,143 @@
+---
+import Base from "../layouts/Base.astro";
+import countries from "../data/countries.json";
+
+const vn = countries.find((c) => c.id === "vietnam");
+const chips = countries.slice(0, 6);
+
+const dirs = [
+  { ico: "🤖", h: "Гайды по нейросетям", p: "Higgsfield, Midjourney, HeyGen, CapCut и рабочие связки между ними.", go: "Смотреть гайды →", href: "/gaydy" },
+  { ico: "💰", h: "Заработок через AI", p: "Реальные модели с вилками цен: от AI-фото до Reels под ключ.", go: "Как зарабатывать →", href: "/zarabotok" },
+  { ico: "🎬", h: "Навыки монтажа", p: "Структура ролика, переходы, субтитры и саунд-дизайн.", go: "Учиться монтажу →", href: "/montazh" },
+  { ico: "🌐", h: "Удалённая работа", p: "Где искать клиентов, как ставить цену и организовать поток задач.", go: "Разобраться →", href: "/udalyonka" },
+  { ico: "🌍", h: "Страны для жизни", p: "Где и на каких условиях можно переехать и работать удалённо.", go: "Открыть каталог →", href: "/strany" },
+  { ico: "🗂️", h: "Полезные материалы", p: "Библиотека промптов, шаблоны, чеклисты и подборки сервисов.", go: "Забрать материалы →", href: "/materialy" },
+];
+
+const steps = [
+  { n: "01", h: "Освой инструмент", p: "Выбери одну нейросеть и научись стабильно получать результат." },
+  { n: "02", h: "Сделай контент", p: "Первое видео или фото по готовым шаблонам и промптам." },
+  { n: "03", h: "Найди клиента", p: "Где искать первые заказы и как назвать адекватную цену." },
+  { n: "04", h: "Выбери страну", p: "Куда переехать и на каких условиях жить и работать удалённо." },
+];
+---
+<Base title="pichugster · база — зарабатывать удалённо через AI и жить, где хочешь">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>База знаний · AI · удалёнка · релокация</span>
+      <h1>Зарабатывай удалённо через нейросети — <span class="warm">и живи, где захочешь</span></h1>
+      <p class="lede">Гайды по AI-инструментам, реальные модели заработка, навыки монтажа и каталог стран для переезда. Без воды и завышенных обещаний — система, по которой это правда работает.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#path">С чего начать →</a>
+        <a class="btn btn-ghost" href="/strany">🌍 Каталог стран</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>4</b> направления навыков</div>
+        <div><b>{countries.length}+</b> стран для релокации</div>
+        <div><b>80/20</b> польза против продаж</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ПУТЬ -->
+  <section class="band" id="path">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>С чего начать</span>
+        <h2>Маршрут от нуля до первого дохода</h2>
+        <p>Не курс ради курса. Четыре шага, которые превращают «хочу» в «делаю».</p>
+      </div>
+      <div class="path">
+        {steps.map((s) => (
+          <div class="step"><span class="n">{s.n}</span><h3>{s.h}</h3><p>{s.p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- РАЗДЕЛЫ -->
+  <section class="band" id="dirs" style="background:var(--ink-2)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>Разделы базы</span>
+        <h2>Всё, что нужно для удалённого дохода</h2>
+        <p>Каждый раздел — это понятные гайды, разборы и шаблоны, а не теория.</p>
+      </div>
+      <div class="dirs">
+        {dirs.map((d) => (
+          <a class="dir" href={d.href}>
+            <div class="ico">{d.ico}</div>
+            <h3>{d.h}</h3>
+            <p>{d.p}</p>
+            <span class="go">{d.go}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- СТРАНЫ -->
+  <section class="band countries">
+    <div class="wrap">
+      <div class="country-wrap">
+        <div class="country-text">
+          <span class="eyebrow"><span class="dot"></span>Фишка базы</span>
+          <h2>Куда переехать и удалённо зарабатывать</h2>
+          <p>Каталог стран с фильтрами: виза для удалёнщиков, стоимость жизни, интернет и комьюнити. Сравнивай и выбирай под себя.</p>
+          <div class="chips">
+            {chips.map((c) => (<span class="chip">{c.flag} {c.name}</span>))}
+          </div>
+          <div class="cta-row" style="margin-top:26px"><a class="btn btn-primary" href="/strany">Сравнить страны →</a></div>
+        </div>
+        <div class="country-card">
+          <div class="cc-head"><span>{vn.flag} {vn.name}</span><span>легко начать · {vn.ease}/5</span></div>
+          <div class="cc-row"><span>Виза для удалёнщиков</span><b class="ok">{vn.visa}</b></div>
+          <div class="cc-row"><span>Стоимость жизни / мес</span><b>{vn.cost}</b></div>
+          <div class="cc-row"><span>Интернет</span><b>{vn.internet}</b></div>
+          <div class="cc-row"><span>Комьюнити экспатов</span><b>{vn.community}</b></div>
+          <div class="cc-row"><span>Подходит для</span><b>AI · монтаж · блог</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРОДУКТ -->
+  <section class="band" id="product" style="background:var(--ink-2)">
+    <div class="wrap">
+      <div class="product">
+        <div class="product-text">
+          <span class="eyebrow"><span class="dot"></span>Первый продукт</span>
+          <h2>AI Creator Starter Pack</h2>
+          <p>Система, по которой всё это работает: инструменты, рабочий процесс от идеи до публикации и готовые промпты в одном наборе.</p>
+          <div class="note">Правило базы: 80% польза · 20% продажи</div>
+        </div>
+        <div class="pcard">
+          <span class="soon">скоро</span>
+          <h3>Что внутри</h3>
+          <div class="price">990–2990 ₽ · Notion / PDF / шаблоны</div>
+          <ul>
+            <li>AI Tool Stack — система инструментов</li>
+            <li>Полный workflow от идеи до публикации</li>
+            <li>Как начать вести блог: хуки и съёмка</li>
+            <li>Реальные модели заработка через AI</li>
+            <li>Готовые промпты и шаблоны</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="final">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;display:flex"><span class="dot"></span>Начни сегодня</span>
+      <h2>Один человек. Ноутбук. <span class="warm">Целая новая жизнь.</span></h2>
+      <p>Забери первый гайд бесплатно и получай новые материалы — без спама, по делу.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/gaydy">Читать гайды</a>
+        <a class="btn btn-ghost" href="#">Telegram-канал</a>
+      </div>
+    </div>
+  </section>
+</Base>
