@@ -11,13 +11,16 @@ const links = [
 ];
 ---
 <nav class="site">
-  <a class="brand" href="/">pichug<b>ster</b><span class="tag">база</span></a>
+  <a class="brand" href="/">
+    <img class="brand-logo" src="/logo.png" alt="" />
+    <span class="brand-name">pichug<b>ster</b></span>
+  </a>
   <div class="nav-links" id="navLinks">
     {links.map((l) => (
       <a href={l.href} aria-current={current === l.href ? "page" : undefined}>{l.label}</a>
     ))}
   </div>
-  <a class="nav-cta" href="/#path">С чего начать</a>
+  <a class="nav-cta" href="/#steps">С чего начать</a>
   <button class="burger" id="burger" aria-label="Меню">☰</button>
 </nav>
 <script>
@@ -28,7 +31,7 @@ const links = [
     l.style.display = open ? 'none' : 'flex';
     if (!open) {
       Object.assign(l.style, { position:'absolute', top:'56px', left:'0', right:'0',
-        flexDirection:'column', gap:'0', background:'var(--panel)', borderBottom:'1px solid var(--line)' });
+        flexDirection:'column', gap:'0', background:'var(--cloud)', borderBottom:'1px solid var(--line)' });
       l.querySelectorAll('a').forEach((a) => { a.style.padding='14px 28px'; a.style.borderTop='1px solid var(--line)'; });
     }
   });
