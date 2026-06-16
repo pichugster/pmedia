@@ -1,0 +1,45 @@
+---
+import { PRODUCTS } from "../data/products.js";
+const { rubric } = Astro.props;
+const items = PRODUCTS[rubric] || [];
+const meta = {
+  free:     { icon:"🆓", label:"Бесплатно" },
+  mini:     { icon:"💸", label:"Мини" },
+  core:     { icon:"📦", label:"Основной" },
+  flagship: { icon:"🚀", label:"Флагман" },
+};
+---
+{items.length > 0 && (
+  <section class="band ladder-band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>Продукты</span>
+        <h2>От бесплатного — к флагману</h2>
+        <p>Начни с бесплатного, поднимайся по мере роста. Платные продукты в разработке — скоро открою доступ.</p>
+      </div>
+      <div class="ladder">
+        {items.map((p) => (
+          <div class={`prod ${p.tier}`}>
+            <div class="tier">{meta[p.tier].icon} {meta[p.tier].label}</div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <div class="price">{p.price}</div>
+            <button class="prod-btn" disabled>{p.tier === "free" ? "Скоро" : "В работе"}</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+<style>
+  .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .prod{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:24px 22px}
+  .prod.flagship{border-color:#c7d2fe;background:linear-gradient(160deg,rgba(37,99,235,.06),#fff)}
+  .prod .tier{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:12px}
+  .prod h3{font-family:var(--display);font-weight:600;font-size:1.08rem;margin-bottom:8px;line-height:1.22}
+  .prod p{color:var(--slate);font-size:.9rem;flex:1;margin-bottom:16px}
+  .prod .price{font-family:var(--display);font-weight:700;font-size:1.2rem;margin-bottom:14px;color:var(--midnight)}
+  .prod-btn{font-family:var(--display);font-weight:600;font-size:.86rem;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel-2);color:var(--slate);cursor:not-allowed;width:100%}
+  @media(max-width:900px){.ladder{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.ladder{grid-template-columns:1fr}}
+</style>

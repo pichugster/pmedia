@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import ProductLadder from "../components/ProductLadder.astro";
 import { getCollection } from "astro:content";
 import { RUBRICS } from "../data/rubrics.js";
-const RUBRIC = "montazh";
+const RUBRIC = "bloger";
 const r = RUBRICS[RUBRIC];
 const guides = (await getCollection("guides", ({ data }) => !data.draft && data.rubric === RUBRIC))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());

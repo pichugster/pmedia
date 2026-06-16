@@ -1,12 +1,14 @@
 import { defineCollection, z } from "astro:content";
 
-// Описание полей для каждого гайда. Эти поля заполняешь в начале .md файла.
+// Поля для каждого гайда. Заполняешь в начале .md файла.
+// rubric — в какую рубрику попадёт гайд (обязательно).
 const guides = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.string(),            // напр. "Нейросети", "Заработок", "Монтаж"
+    rubric: z.enum(["bloger", "montazh", "zarabotok", "strany", "udalyonka", "poleznoe"]),
+    category: z.string().default(""),   // маленькая подпись-тег на карточке
     date: z.coerce.date(),
     draft: z.boolean().default(false),
   }),

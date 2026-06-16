@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import ProductLadder from "../components/ProductLadder.astro";
 import countries from "../data/countries.json";
 
 const filters = [
@@ -70,4 +71,6 @@ const tagLabels = { ai: "AI", montazh: "монтаж", blog: "блог", novicho
       });
     });
   </script>
+
+  <ProductLadder rubric="strany" />
 </Base>
