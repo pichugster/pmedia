@@ -1,0 +1,71 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { GROUPS } from "../../data/zarabotok.js";
+
+export function getStaticPaths() {
+  return GROUPS.flatMap((g) => g.items).map((n) => ({ params: { napr: n.slug }, props: { napr: n } }));
+}
+const { napr } = Astro.props;
+const guides = (await getCollection("guides", ({ data }) =>
+  !data.draft && data.rubric === "zarabotok" && data.napravlenie === napr.slug
+)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title={`${napr.title} · Заработок на ИИ · pichugster`} description={napr.desc} current="/zarabotok">
+  <section class="page-hero">
+    <div class="wrap">
+      <a class="back" href="/zarabotok">← Заработок на ИИ</a>
+      <span class="eyebrow"><span class="dot"></span>Заработок на ИИ</span>
+      <h1>{napr.title}</h1>
+      <p>{napr.desc}</p>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:40px;padding-bottom:36px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="eyebrow"><span class="dot"></span>Услуги</span>
+        <h2>Что можно делать в этом направлении</h2>
+        <p>В каждой услуге — бесплатная статья и подробный гайд за 500 ₽.</p>
+      </div>
+      <div class="usluga-grid">
+        {napr.services.map((s) => (
+          <div class="usluga-card">
+            <h3>{s}</h3>
+            <div class="prod-mini"><span>🆓 Бесплатная статья</span><span class="st">скоро</span></div>
+            <div class="prod-mini"><span>💸 Гайд · 500 ₽</span><span class="st">в работе</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="eyebrow"><span class="dot"></span>Полезное</span>
+        <h2>Статьи по теме</h2>
+      </div>
+      <div class="guide-grid">
+        {guides.map((g) => (
+          <a class="guide-card" href={`/guide/${g.slug}`}>
+            <span class="cat">{g.data.category}</span>
+            <h3>{g.data.title}</h3>
+            <p>{g.data.description}</p>
+          </a>
+        ))}
+      </div>
+      {guides.length === 0 && <p class="empty">Полезные статьи по теме скоро появятся.</p>}
+    </div>
+  </section>
+</Base>
+<style>
+  .back{display:inline-block;margin-bottom:14px;color:var(--slate);font-size:.9rem;text-decoration:none}
+  .usluga-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .usluga-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:20px}
+  .usluga-card h3{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.25;margin-bottom:12px}
+  .prod-mini{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;color:var(--slate);padding:8px 0;border-top:1px solid var(--line)}
+  .prod-mini .st{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
+  @media(max-width:900px){.usluga-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.usluga-grid{grid-template-columns:1fr}}
+</style>

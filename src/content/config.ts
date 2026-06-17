@@ -8,7 +8,9 @@ const guides = defineCollection({
     title: z.string(),
     description: z.string(),
     rubric: z.enum(["bloger", "montazh", "zarabotok", "strany", "udalyonka", "poleznoe"]),
-    category: z.string().default(""),   // маленькая подпись-тег на карточке
+    category: z.string().default(""),
+    napravlenie: z.string().optional(),
+    usluga: z.string().optional(),   // маленькая подпись-тег на карточке
     date: z.coerce.date(),
     draft: z.boolean().default(false),
   }),
