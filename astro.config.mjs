@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// Конфиг Astro. site — поменяй на свой домен, когда купишь его.
+// site — реальный домен сайта (нужен для карты сайта и ссылок).
 export default defineConfig({
-  site: 'https://pichugster.example',
+  site: 'https://www.pichugster.com',
+  integrations: [sitemap()],
 });
