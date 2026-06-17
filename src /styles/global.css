@@ -182,13 +182,13 @@ footer.site .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
 .stub .soon-badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);border:1px solid var(--coral);padding:6px 14px;border-radius:999px;display:inline-block;margin-top:20px}
 
 @media (max-width:900px){
+  .nav-links{display:none}
+  .burger{display:block}
   .dirs,.country-grid,.guide-grid{grid-template-columns:repeat(2,1fr)}
   .path{grid-template-columns:repeat(2,1fr)}
   .country-wrap,.product{grid-template-columns:1fr;gap:30px}
 }
 @media (max-width:620px){
-  .nav-links{display:none}
-  .burger{display:block}
   .dirs,.path,.country-grid,.guide-grid{grid-template-columns:1fr}
   .band{padding:64px 0}
   .wrap{padding:0 20px}
