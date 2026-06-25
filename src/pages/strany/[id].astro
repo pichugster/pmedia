@@ -1,0 +1,117 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import countries from "../../data/countries.json";
+
+export function getStaticPaths() {
+  return countries.map((c) => ({ params: { id: c.id }, props: { c } }));
+}
+const { c } = Astro.props;
+const guides = (await getCollection("guides", ({ data }) => !data.draft && data.rubric === "strany"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title={`${c.name} для удалённой жизни · pichugster`} description={`${c.name}: ${c.tagline}. Виза, бюджет, интернет, плюсы и минусы для удалёнщика.`} current="/strany">
+  <section class="c-hero">
+    <div class="wrap">
+      <a class="back" href="/strany">← Все страны</a>
+      <div class="c-title"><span class="flag">{c.flag}</span><h1>{c.name}</h1></div>
+      <p class="lede">{c.tagline}</p>
+      <p class="disclaimer">⚠️ Визы, цены и правила меняются — проверяй актуальное перед поездкой.</p>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:40px;padding-bottom:36px">
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact"><span>Регион</span><b>{c.region}</b></div>
+        <div class="fact"><span>Старт</span><b>{c.ease}</b></div>
+        <div class="fact"><span>Виза</span><b>{c.visaNote}</b></div>
+        <div class="fact"><span>Бюджет</span><b>{c.budgetNote}</b></div>
+        <div class="fact"><span>Интернет</span><b>{c.internet}</b></div>
+        <div class="fact"><span>Комьюнити</span><b>{c.community}</b></div>
+      </div>
+
+      <div class="cols">
+        <div class="col">
+          <h2>Плюсы</h2>
+          <ul class="plus">{c.pros.map((p) => (<li>{p}</li>))}</ul>
+        </div>
+        <div class="col">
+          <h2>Минусы</h2>
+          <ul class="minus">{c.cons.map((m) => (<li>{m}</li>))}</ul>
+        </div>
+      </div>
+
+      <div class="cities">
+        <h2>Где жить</h2>
+        <div class="city-row">{c.cities.map((ci) => (<span class="city">{ci}</span>))}</div>
+        <p class="muted">Подробный разбор районов и цен — в работе.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0;padding-bottom:40px">
+    <div class="wrap">
+      <div class="guide-cta">
+        <div>
+          <h3>Подробный гайд по переезду в {c.name}</h3>
+          <p>Виза по шагам, бюджет, банки, жильё, связь — всё в одном месте.</p>
+        </div>
+        <span class="btn btn-primary btn-off">Скоро · 500 ₽</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0;padding-bottom:48px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:22px">
+        <span class="eyebrow"><span class="dot"></span>Полезное</span>
+        <h2>Статьи по теме</h2>
+      </div>
+      <div class="guide-grid">
+        {guides.map((g) => (
+          <a class="guide-card" href={`/guide/${g.slug}`}>
+            <span class="cat">{g.data.category}</span>
+            <h3>{g.data.title}</h3>
+            <p>{g.data.description}</p>
+          </a>
+        ))}
+      </div>
+      {guides.length === 0 && <p class="empty">Статьи про переезд и жизнь в этой стране скоро появятся.</p>}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .c-hero{padding:74px 0 48px;background:linear-gradient(135deg,rgba(6,182,212,.10),rgba(91,124,240,.10) 40%,rgba(179,107,224,.10) 70%,rgba(255,143,168,.12));border-bottom:1px solid var(--line)}
+  .back{display:inline-block;margin-bottom:16px;color:var(--slate);font-size:.9rem;text-decoration:none}
+  .c-title{display:flex;align-items:center;gap:14px}
+  .c-title .flag{font-size:2.6rem}
+  .c-title h1{font-family:var(--display);font-weight:700;font-size:2.6rem;letter-spacing:-.02em}
+  .c-hero .lede{font-size:1.15rem;color:var(--slate);margin:10px 0 14px}
+  .disclaimer{font-size:.85rem;color:var(--slate);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:inline-block}
+
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:34px}
+  .fact{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px 16px}
+  .fact span{display:block;font-size:.78rem;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+  .fact b{font-family:var(--display);font-weight:600;font-size:1.02rem}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:34px}
+  .col h2{font-family:var(--display);font-weight:600;font-size:1.3rem;margin-bottom:12px}
+  .plus,.minus{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .plus li,.minus li{position:relative;padding-left:26px;font-size:.98rem}
+  .plus li:before{content:"+";position:absolute;left:6px;color:#0F766E;font-weight:700}
+  .minus li:before{content:"–";position:absolute;left:8px;color:#DC2626;font-weight:700}
+
+  .cities{margin-bottom:8px}
+  .cities h2{font-family:var(--display);font-weight:600;font-size:1.3rem;margin-bottom:12px}
+  .city-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .city{padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-family:var(--display);font-weight:500}
+
+  .guide-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:22px 24px}
+  .guide-cta h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:4px}
+  .guide-cta p{color:var(--slate);font-size:.95rem}
+  .btn-off{opacity:.55;pointer-events:none}
+
+  @media(max-width:680px){.facts{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.c-title h1{font-size:2rem}}
+</style>

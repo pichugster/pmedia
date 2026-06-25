@@ -1,76 +1,122 @@
 ---
 import Base from "../layouts/Base.astro";
-import ProductLadder from "../components/ProductLadder.astro";
 import countries from "../data/countries.json";
-
-const filters = [
-  { key: "all",     label: "Все" },
-  { key: "novichok", label: "Новичкам" },
-  { key: "ai",      label: "AI-фриланс" },
-  { key: "montazh", label: "Монтаж" },
-  { key: "blog",    label: "Блог" },
-  { key: "budget",  label: "Низкие цены" },
-];
-
-const tagLabels = { ai: "AI", montazh: "монтаж", blog: "блог", novichok: "новичкам", budget: "бюджетно" };
 ---
-<Base title="Страны для удалённой жизни — каталог · pichugster" current="/strany">
-  <section class="page-hero">
+<Base title="Страны для удалённой жизни · pichugster" description="Подбери страну для удалённой жизни: виза, бюджет, интернет, комьюнити. Разборы и чек-листы переезда." current="/strany">
+  <section class="s-hero">
     <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span>Каталог стран</span>
-      <h1>Куда переехать и <span class="warm">работать удалённо</span></h1>
-      <p>Сравни страны по визе для удалёнщиков, стоимости жизни, интернету и комьюнити. Фильтруй под свою задачу — AI, монтаж или блог.</p>
+      <span class="eyebrow"><span class="dot"></span>Страны</span>
+      <h1>Где жить и работать удалённо</h1>
+      <p class="lede">Подбери страну под себя — виза, бюджет, интернет, комьюнити. И разберись, с чего начать переезд.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#picker">Подобрать страну</a>
+        <a class="btn btn-ghost" href="#start">С чего начать</a>
+      </div>
     </div>
   </section>
 
-  <section class="band" style="padding-top:40px">
+  <section id="picker" class="band" style="padding-top:44px;padding-bottom:42px">
     <div class="wrap">
-      <div class="filters" id="filters">
-        {filters.map((f) => (
-          <button class:list={["filter", { active: f.key === "all" }]} data-filter={f.key}>{f.label}</button>
-        ))}
+      <div class="sec-head" style="margin-bottom:20px">
+        <span class="eyebrow"><span class="dot"></span>Подбор</span>
+        <h2>Подбери под себя</h2>
+        <p>Включи фильтры — оставлю подходящие страны.</p>
       </div>
-
+      <div class="filters" id="filters">
+        <button class="chip" data-key="ease" data-val="Простой">Простой въезд</button>
+        <button class="chip" data-key="budget" data-val="Низкий">Низкий бюджет</button>
+        <button class="chip" data-key="internet" data-val="Быстрый">Быстрый интернет</button>
+        <button class="chip" data-key="comm" data-val="yes">Есть комьюнити</button>
+        <button class="chip chip-reset" id="reset">Сбросить</button>
+      </div>
       <div class="country-grid" id="grid">
         {countries.map((c) => (
-          <article class="country-card" data-tags={c.tags.join(",")}>
-            <div class="cc-head"><span>{c.flag} {c.name}</span><span>легко · {c.ease}/5</span></div>
-            <div class="cc-row"><span>Виза удалёнщику</span><b class="ok">{c.visa}</b></div>
-            <div class="cc-row"><span>Жизнь / мес</span><b>{c.cost}</b></div>
-            <div class="cc-row"><span>Интернет</span><b>{c.internet}</b></div>
-            <div class="cc-row"><span>Комьюнити</span><b>{c.community}</b></div>
-            <div class="cc-tags">
-              {c.tags.map((t) => (<span class="cc-tag">{tagLabels[t] || t}</span>))}
-            </div>
-          </article>
+          <a class="country-card" href={`/strany/${c.id}`}
+             data-ease={c.ease} data-budget={c.budget} data-internet={c.internet}
+             data-comm={c.community === "Небольшое" ? "no" : "yes"}>
+            <div class="cc-top"><span class="flag">{c.flag}</span><h3>{c.name}</h3></div>
+            <p class="cc-tag">{c.tagline}</p>
+            <table class="cc-facts">
+              <tr><td>Виза</td><td>{c.visaNote}</td></tr>
+              <tr><td>Бюджет</td><td>{c.budgetNote}</td></tr>
+              <tr><td>Интернет</td><td>{c.internet}</td></tr>
+            </table>
+            <span class="cc-more">Подробнее →</span>
+          </a>
         ))}
       </div>
-      <p class="empty" id="empty" style="display:none">Под этот фильтр пока нет стран — добавим.</p>
-
-      <p class="empty" style="margin-top:40px">⚠️ Данные по визам и ценам — стартовые ориентиры. Перед переездом всегда проверяй актуальные требования на официальных источниках.</p>
+      <p class="empty" id="nomatch" style="display:none">Под такие фильтры пока ничего нет — сбрось часть.</p>
     </div>
   </section>
 
-  <script>
-    const buttons = document.querySelectorAll('#filters .filter');
-    const cards = Array.from(document.querySelectorAll('#grid .country-card'));
-    const empty = document.getElementById('empty');
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        buttons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.getAttribute('data-filter');
-        let shown = 0;
-        cards.forEach((card) => {
-          const tags = (card.getAttribute('data-tags') || '').split(',');
-          const show = f === 'all' || tags.includes(f);
-          card.style.display = show ? '' : 'none';
-          if (show) shown++;
-        });
-        empty.style.display = shown === 0 ? 'block' : 'none';
-      });
-    });
-  </script>
-
-  <ProductLadder rubric="strany" />
+  <section id="start" class="band band-soft" style="padding-top:40px;padding-bottom:48px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:20px">
+        <span class="eyebrow"><span class="dot"></span>Перед переездом</span>
+        <h2>Не знаешь, с чего начать?</h2>
+        <p>Базовые разборы — скоро.</p>
+      </div>
+      <div class="start-grid">
+        <div class="start-card"><span class="si">🧭</span><div><h3>Как выбрать страну под себя</h3><p>По бюджету, визе и образу жизни.</p><span class="soon">Скоро</span></div></div>
+        <div class="start-card"><span class="si">✅</span><div><h3>Чек-лист переезда удалёнщика</h3><p>Документы, деньги, связь, жильё.</p><span class="soon">Скоро</span></div></div>
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .s-hero{padding:84px 0 60px;background:linear-gradient(135deg,rgba(6,182,212,.10),rgba(91,124,240,.10) 40%,rgba(179,107,224,.10) 70%,rgba(255,143,168,.12));border-bottom:1px solid var(--line)}
+  .s-hero h1{font-family:var(--display);font-weight:700;font-size:2.6rem;line-height:1.07;letter-spacing:-.02em;margin:14px 0 14px}
+  .s-hero .lede{font-size:1.1rem;color:var(--slate);max-width:540px;margin-bottom:24px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+  .chip{font:inherit;font-size:.92rem;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--midnight);cursor:pointer;transition:all .2s}
+  .chip:hover{border-color:var(--sky)}
+  .chip.active{background:var(--midnight);color:#fff;border-color:var(--midnight)}
+  .chip-reset{color:var(--slate)}
+
+  .country-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .country-card{display:block;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:18px 20px;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s,box-shadow .25s}
+  .country-card:hover{transform:translateY(-3px);border-color:#c7d2fe;box-shadow:0 16px 34px -24px rgba(37,99,235,.5)}
+  .cc-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .flag{font-size:1.5rem}
+  .cc-top h3{font-family:var(--display);font-weight:600;font-size:1.2rem}
+  .cc-tag{font-size:.92rem;color:var(--slate);margin-bottom:12px}
+  .cc-facts{width:100%;font-size:.88rem;border-collapse:collapse}
+  .cc-facts td{padding:5px 0;border-top:1px solid var(--line);vertical-align:top}
+  .cc-facts td:first-child{color:var(--slate);width:38%}
+  .cc-facts td:last-child{text-align:right}
+  .cc-more{display:inline-block;margin-top:12px;color:var(--sky);font-weight:600;font-size:.9rem}
+
+  .band-soft{background:linear-gradient(135deg,rgba(6,182,212,.07),rgba(179,107,224,.07) 70%,rgba(255,143,168,.09))}
+  .start-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .start-card{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px 20px}
+  .start-card .si{font-size:1.5rem}
+  .start-card h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin-bottom:3px}
+  .start-card p{font-size:.9rem;color:var(--slate);margin-bottom:8px}
+  .soon{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:linear-gradient(135deg,#FF7E6B,#FB7BA2);color:#fff}
+
+  @media(max-width:900px){.country-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){.start-grid{grid-template-columns:1fr}}
+  @media(max-width:560px){.country-grid{grid-template-columns:1fr}.s-hero h1{font-size:2.1rem}}
+</style>
+
+<script is:inline>
+  const chips = Array.from(document.querySelectorAll('.chip[data-key]'));
+  const cards = Array.from(document.querySelectorAll('.country-card'));
+  const nomatch = document.getElementById('nomatch');
+  const reset = document.getElementById('reset');
+  function apply(){
+    const active = chips.filter(c=>c.classList.contains('active'));
+    let shown = 0;
+    cards.forEach(card=>{
+      const ok = active.every(c=>card.dataset[c.dataset.key] === c.dataset.val);
+      card.style.display = ok ? '' : 'none';
+      if(ok) shown++;
+    });
+    if(nomatch) nomatch.style.display = shown ? 'none' : '';
+  }
+  chips.forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('active');apply();}));
+  if(reset) reset.addEventListener('click',()=>{chips.forEach(c=>c.classList.remove('active'));apply();});
+</script>
