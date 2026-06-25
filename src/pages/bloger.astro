@@ -1,72 +1,183 @@
 ---
 import Base from "../layouts/Base.astro";
-import ProductLadder from "../components/ProductLadder.astro";
-import { getCollection } from "astro:content";
-import { RUBRICS } from "../data/rubrics.js";
-const RUBRIC = "bloger";
-const r = RUBRICS[RUBRIC];
-const guides = (await getCollection("guides", ({ data }) => !data.draft && data.rubric === RUBRIC))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// === ФОРМА ЗАЯВОК ===
+// Вставь ТОТ ЖЕ код Formspree, что и в montazh.astro (заявки придут в одно место).
+const FORM_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+
+// === ПРИМЕРЫ РАБОТ (заглушки — подставишь свои) ===
+const works = [
+  { title: "Упаковка профиля", note: "шапка, актуальное, визуал", price: "от 2 000 ₽", icon: "📱" },
+  { title: "Reels под ключ", note: "сценарий + монтаж", price: "от 1 500 ₽", icon: "🎬" },
+  { title: "Запуск блога", note: "стратегия + упаковка + план", price: "от 8 000 ₽", icon: "🚀" },
+];
+
+// === УСЛУГИ (два пути в каждой) ===
+const services = [
+  { title: "Запуск блога с нуля", desc: "Упаковка, позиционирование и контент-план под старт.", guide: null },
+  { title: "Reels: сценарии и продакшн", desc: "Хуки, сценарии, съёмка и монтаж под рост.", guide: null },
+  { title: "Контент-система", desc: "Рубрики и ритм, чтобы постить без выгорания.", guide: null },
+];
 ---
-<Base title={`${r.title} · pichugster`} description={r.intro} current={r.path}>
-  <section class="page-hero">
+<Base title="Стать блогером в Instagram · pichugster" description="Запусти Instagram-блог: упаковка, Reels, контент-система. Научись сам по гайдам или закажи под ключ." current="/bloger">
+  <section class="m-hero">
     <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span>{r.label}{r.soon && <span class="soon">Скоро</span>}</span>
-      <h1>{r.title}</h1>
-      <p>{r.intro}</p>
+      <span class="eyebrow"><span class="dot"></span>Стать блогером</span>
+      <h1>Запусти блог, который растёт</h1>
+      <p class="lede">Instagram-блог с нуля: упаковка, Reels и контент-система. Освой сам по гайдам — или соберём блог под ключ.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#services">Сделать самому</a>
+        <a class="btn btn-ghost" href="#order">📸 Запустить со мной</a>
+      </div>
     </div>
   </section>
 
-  {r.topics && (
-    <section class="band" style="padding-top:44px;padding-bottom:38px">
-      <div class="wrap">
-        <div class="sec-head" style="margin-bottom:24px">
-          <span class="eyebrow"><span class="dot"></span>Что здесь будет</span>
-          <h2>Скоро в этом разделе</h2>
-          <p>Готовлю материалы и гайды по этим темам. Подпишись — пришлю, когда откроется.</p>
-        </div>
-        <div class="topic-grid">
-          {r.topics.map((t) => (<div class="topic-card"><span class="tdot"></span>{t}</div>))}
-        </div>
+  <section class="band" style="padding-top:48px;padding-bottom:40px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="eyebrow"><span class="dot"></span>Примеры работ</span>
+        <h2>Что можно сделать</h2>
+        <p>Реальные примеры и ориентир по цене.</p>
       </div>
-    </section>
-  )}
-
-  {guides.length > 0 && (
-    <section class="band" style="padding-top:0">
-      <div class="wrap">
-        <div class="sec-head" style="margin-bottom:24px">
-          <span class="eyebrow"><span class="dot"></span>Статьи</span>
-          <h2>Полезные материалы</h2>
-        </div>
-        <div class="guide-grid">
-          {guides.map((g) => (
-            <a class="guide-card" href={`/guide/${g.slug}`}>
-              <span class="cat">{g.data.category}</span>
-              <h3>{g.data.title}</h3>
-              <p>{g.data.description}</p>
-            </a>
-          ))}
-        </div>
+      <div class="work-grid">
+        {works.map((w) => (
+          <div class="work-card">
+            <div class="work-thumb"><span>{w.icon}</span></div>
+            <div class="work-body">
+              <h3>{w.title}</h3>
+              <p>{w.note}</p>
+              <span class="price">{w.price}</span>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
-  )}
+      <p class="muted" style="margin-top:14px">Скоро здесь появятся реальные кейсы: до / после по блогам.</p>
+    </div>
+  </section>
 
-  <ProductLadder rubric={RUBRIC} />
+  <section id="services" class="band" style="padding-top:0;padding-bottom:40px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="eyebrow"><span class="dot"></span>Два пути</span>
+        <h2>Сделай сам или соберём вместе</h2>
+        <p>В каждой услуге — пошаговый гайд за 500 ₽ или работа под ключ.</p>
+      </div>
+      <div class="svc-list">
+        {services.map((s) => (
+          <div class="svc-card">
+            <div class="svc-head">
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+            <div class="svc-paths">
+              <div class="path">
+                <div class="path-title">📘 Сделай сам</div>
+                <div class="path-desc">Пошаговый гайд: как сделать это самому.</div>
+                {s.guide
+                  ? <a class="btn btn-primary btn-sm" href={s.guide}>Гайд · 500 ₽</a>
+                  : <span class="btn btn-primary btn-sm btn-off">Гайд · 500 ₽ · скоро</span>}
+              </div>
+              <div class="path">
+                <div class="path-title">🤝 Сделаю за вас</div>
+                <div class="path-desc">Сделаю под ключ — расскажи задачу.</div>
+                <a class="btn btn-ghost btn-sm" href="#order">Оставить заявку</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <section class="band" style="padding-top:20px">
-    <div class="wrap" style="text-align:center;max-width:620px;margin:0 auto">
-      <h2 style="font-family:var(--display);font-weight:600;font-size:1.6rem;letter-spacing:-.01em;margin-bottom:10px">Не пропусти запуск раздела</h2>
-      <p style="color:var(--slate);margin-bottom:22px">Подпишись — сообщу, когда здесь появятся гайды и продукты.</p>
-      <a class="btn btn-primary" href="/#sub">Подписаться</a>
+  <section id="order" class="band band-soft" style="padding-top:48px;padding-bottom:52px">
+    <div class="wrap" style="max-width:560px;margin:0 auto">
+      <div class="sec-head" style="margin-bottom:22px;text-align:center">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Запустить блог</span>
+        <h2>Оставь заявку</h2>
+        <p>Заполни — отвечу и обсудим твой блог. Это ни к чему не обязывает.</p>
+      </div>
+      <form id="order-form" action={FORM_ENDPOINT} method="POST" class="order-form">
+        <input type="hidden" name="_subject" value="Новая заявка: блог — pichugster" />
+        <input type="text" name="name" placeholder="Как тебя зовут" required />
+        <input type="text" name="contact" placeholder="Telegram или почта для связи" required />
+        <textarea name="message" placeholder="О чём твой блог и что нужно (запуск, Reels, упаковка)?" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        <p id="order-status" class="order-status"></p>
+      </form>
     </div>
   </section>
 </Base>
+
 <style>
-  .soon{display:inline-block;margin-left:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:linear-gradient(135deg,#FF7E6B,#FB7BA2);color:#fff;vertical-align:middle}
-  .topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .topic-card{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--panel);font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--midnight)}
-  .tdot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#8B5CF6);flex:none}
-  @media(max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.topic-grid{grid-template-columns:1fr}}
+  .m-hero{position:relative;padding:84px 0 64px;background:
+    linear-gradient(135deg,rgba(6,182,212,.10),rgba(91,124,240,.10) 40%,rgba(179,107,224,.10) 70%,rgba(255,143,168,.12));
+    border-bottom:1px solid var(--line)}
+  .m-hero h1{font-family:var(--display);font-weight:700;font-size:2.7rem;line-height:1.06;letter-spacing:-.02em;margin:14px 0 14px}
+  .m-hero .lede{font-size:1.12rem;color:var(--slate);max-width:540px;margin-bottom:26px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-sm{padding:9px 16px;font-size:.92rem}
+  .btn-off{opacity:.55;pointer-events:none}
+
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .work-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel)}
+  .work-thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+    background:linear-gradient(135deg,#06B6D4,#5B7CF0 45%,#B36BE0 75%,#FF8FA8)}
+  .work-body{padding:14px 16px}
+  .work-body h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin-bottom:3px}
+  .work-body p{font-size:.9rem;color:var(--slate);margin-bottom:8px}
+  .price{font-family:var(--mono);font-size:.82rem;color:var(--sky);font-weight:600}
+
+  .svc-list{display:flex;flex-direction:column;gap:16px}
+  .svc-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:22px 24px}
+  .svc-head h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin-bottom:4px}
+  .svc-head p{color:var(--slate);margin-bottom:16px}
+  .svc-paths{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .path{border:1px solid var(--line);border-radius:14px;padding:16px}
+  .path-title{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:6px}
+  .path-desc{font-size:.9rem;color:var(--slate);margin-bottom:14px}
+
+  .band-soft{background:linear-gradient(135deg,rgba(6,182,212,.07),rgba(179,107,224,.07) 70%,rgba(255,143,168,.09))}
+  .order-form{display:flex;flex-direction:column;gap:12px}
+  .order-form input,.order-form textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+    font:inherit;font-size:1rem;background:#fff;color:var(--midnight);resize:vertical}
+  .order-form input:focus,.order-form textarea:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .order-form .btn{margin-top:4px}
+  .order-status{text-align:center;font-size:.95rem;margin-top:6px;min-height:1.2em}
+  .order-status.ok{color:#0F766E}
+  .order-status.err{color:#DC2626}
+
+  @media(max-width:900px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){.svc-paths{grid-template-columns:1fr}}
+  @media(max-width:560px){.work-grid{grid-template-columns:1fr}.m-hero h1{font-size:2.1rem}}
 </style>
+
+<script is:inline>
+  const form = document.getElementById('order-form');
+  const statusEl = document.getElementById('order-status');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (form.action.includes('REPLACE_ME')) {
+        statusEl.textContent = 'Форма ещё не подключена.';
+        statusEl.className = 'order-status err';
+        return;
+      }
+      statusEl.textContent = 'Отправляю…';
+      statusEl.className = 'order-status';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = 'Заявка отправлена — скоро отвечу. Спасибо!';
+          statusEl.className = 'order-status ok';
+        } else {
+          statusEl.textContent = 'Не удалось отправить. Попробуй ещё раз позже.';
+          statusEl.className = 'order-status err';
+        }
+      } catch {
+        statusEl.textContent = 'Не удалось отправить. Проверь соединение.';
+        statusEl.className = 'order-status err';
+      }
+    });
+  }
+</script>
