@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>pichugster — монтаж Reels с нейросетями</title>
+<meta name="description" content="Монтаж Reels и роликов с нейросетями за 1–2 дня. Для экспертов, блогеров и бизнеса. Закажите под ключ или научитесь сами.">
 <link rel="icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +31,7 @@
   .sec-label{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
   .sec-title{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.08;letter-spacing:-.015em}
   .sec-intro{color:var(--slate);max-width:54ch;margin-top:10px;font-size:1.05rem}
-  .band{padding:92px 0}
+  .band{padding:80px 0}
   .center{text-align:center;margin:0 auto}
 
   .btn{font-family:var(--display);font-weight:600;font-size:.95rem;padding:14px 26px;border-radius:999px;display:inline-flex;align-items:center;gap:.5em;transition:transform .25s,box-shadow .3s;cursor:pointer;border:0}
@@ -38,10 +39,9 @@
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(37,99,235,.6)}
   .btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.08)}
   .btn-ghost:hover{transform:translateY(-2px);border-color:#fff}
-  .btn-ghost.dark{border-color:var(--line);color:var(--midnight);background:#fff}
+  .btn-ghost.dark{border:1.5px solid var(--line);color:var(--midnight);background:#fff}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px}
 
-  /* NAV */
   nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 28px;background:rgba(248,250,252,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:center;gap:10px}
   .brand img{height:34px;width:auto}
@@ -51,69 +51,54 @@
   .nav-cta{font-family:var(--display);font-weight:600;font-size:.86rem;background:var(--sky);color:#fff;padding:9px 18px;border-radius:999px}
   .burger{display:none;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--midnight)}
 
-  /* HERO */
-  .hero{position:relative;min-height:90vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+  .hero{position:relative;min-height:82vh;display:flex;align-items:center;color:#fff;overflow:hidden}
   .hero-bg{position:absolute;inset:0;z-index:0;background:url('/img/hero.webp') 62% center/cover}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.74) 0%,rgba(15,23,42,.4) 42%,transparent 72%)}
   .hero .wrap{position:relative;z-index:5;padding:70px 28px}
   .hero .eyebrow{color:#cfeaf2}.hero .eyebrow b{color:var(--coral)}
-  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.02em;max-width:15ch;margin:.4em 0 .42em}
-  .hero p.lede{font-size:clamp(1.05rem,1.7vw,1.3rem);color:#e4ebf6;max-width:44ch;margin-bottom:2em}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.03;letter-spacing:-.02em;max-width:16ch;margin:.4em 0 .38em}
+  .hero p.lede{font-size:clamp(1.05rem,1.7vw,1.28rem);color:#e4ebf6;max-width:46ch;margin-bottom:1.1em}
+  .hero-price{display:inline-block;font-family:var(--display);font-weight:700;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.42);color:#fff;padding:8px 18px;border-radius:999px;margin-bottom:24px;font-size:.95rem}
   .scroll{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:5;width:1px;height:32px;background:linear-gradient(#fff,transparent);opacity:.5;animation:cue 1.8s ease-in-out infinite}
   @keyframes cue{0%,100%{transform:translateX(-50%) scaleY(.4);opacity:.3}50%{transform:translateX(-50%) scaleY(1);opacity:.9}}
 
-  /* VALUES */
-  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-60px;position:relative;z-index:20}
-  .val{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px;box-shadow:0 24px 50px -30px rgba(15,23,42,.4)}
-  .val .ic{width:42px;height:42px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px}
-  .val h3{font-family:var(--display);font-weight:600;font-size:1.12rem;margin-bottom:6px}
-  .val p{color:var(--slate);font-size:.95rem}
+  .pain{display:grid;grid-template-columns:1fr 1.2fr;gap:22px;align-items:stretch}
+  .pain-col{border:1px solid var(--line);border-radius:18px;padding:28px 26px;background:#fff}
+  .pain-col.solution{background:linear-gradient(160deg,rgba(37,99,235,.07),#fff)}
+  .pain-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .pain-list li{padding-left:28px;position:relative;color:#334155}
+  .pain-list li::before{content:"✕";position:absolute;left:4px;color:var(--coral);font-weight:700}
+  .pain-col.solution h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:8px}
+  .pain-col.solution p{color:var(--slate);margin:0 0 20px}
 
-  /* STATS */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
-  .stat .num{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-  .stat .lbl{color:var(--slate);font-size:.9rem;margin-top:6px}
+  .dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+  .dir{padding:26px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;transition:transform .3s,border-color .3s,box-shadow .3s}
+  .dir:hover{transform:translateY(-4px);border-color:#c7d2fe;box-shadow:0 20px 40px -28px rgba(37,99,235,.5)}
+  .dir .ic{font-size:1.5rem}
+  .dir h3{font-family:var(--display);font-weight:600;font-size:1.12rem;margin:12px 0 6px}
+  .dir p{color:var(--slate);font-size:.93rem}
 
-  /* BENEFITS */
-  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:42px}
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
   .ben{display:flex;gap:14px;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff}
-  .ben .ck{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(37,99,235,.1);color:var(--sky);display:flex;align-items:center;justify-content:center;font-weight:700}
+  .ben .ck{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
   .ben h3{font-family:var(--display);font-weight:600;font-size:1.06rem;margin-bottom:3px}
   .ben p{color:var(--slate);font-size:.93rem}
 
-  /* DIRECTIONS */
-  .dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  .dir{padding:28px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;transition:transform .3s,border-color .3s,box-shadow .3s}
-  .dir:hover{transform:translateY(-4px);border-color:#c7d2fe;box-shadow:0 20px 40px -28px rgba(37,99,235,.5)}
-  .dir .ic{font-size:1.5rem}
-  .dir h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 6px}
-  .dir p{color:var(--slate);font-size:.93rem;margin-bottom:14px}
-  .dir .go{font-family:var(--display);font-weight:600;font-size:.85rem;color:var(--sky)}
-
-  /* COUNTRY */
-  .country{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .country-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
-  .chip{border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.86rem}
-  .country img{border-radius:18px;aspect-ratio:4/3;object-fit:cover;box-shadow:0 24px 50px -28px rgba(15,23,42,.35)}
-
-  /* STEPS */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
-  .step{padding:24px 20px;border-radius:16px;background:var(--cloud);border:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}
+  .step{padding:24px 20px;border-radius:16px;background:#fff;border:1px solid var(--line)}
   .step .n{font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--sky)}
   .step h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin:10px 0 6px}
   .step p{color:var(--slate);font-size:.9rem}
 
-  /* BUILD IN PUBLIC */
-  .bip{background:var(--midnight);border-radius:26px;padding:60px 48px;color:var(--cloud);position:relative;overflow:hidden}
-  .bip::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 120% at 100% 0,rgba(139,92,246,.35),transparent 55%),radial-gradient(60% 100% at 0 100%,rgba(6,182,212,.3),transparent 55%)}
-  .bip>*{position:relative;z-index:1}
-  .bip .sec-label{color:var(--cyan)}
-  .bip h2{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3vw,2.3rem);max-width:20ch;line-height:1.12;letter-spacing:-.01em}
-  .bip p{color:#cbd5e1;max-width:58ch;margin-top:16px;font-size:1.05rem}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+  .price-card{border:1px solid var(--line);border-radius:18px;padding:28px 24px;background:#fff;text-align:center;display:flex;flex-direction:column;gap:10px}
+  .price-card.feat{border-color:#c7d2fe;box-shadow:0 20px 40px -28px rgba(37,99,235,.5)}
+  .price-card h3{font-family:var(--display);font-weight:600;font-size:1.2rem}
+  .price-card .pp{font-family:var(--display);font-weight:700;font-size:1.6rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .price-card p{color:var(--slate);font-size:.92rem;flex:1}
+  .price-card .btn{align-self:center}
 
-  /* REVIEWS */
-  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
   .rev{padding:26px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;position:relative}
   .rev .ph{position:absolute;top:16px;right:16px;font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.12em;color:var(--coral);border:1px solid var(--coral);border-radius:999px;padding:3px 8px}
   .rev p{color:#334155;font-size:.95rem;margin-bottom:18px}
@@ -122,43 +107,21 @@
   .rev .nm{font-family:var(--display);font-weight:600;font-size:.95rem}
   .rev .ro{color:var(--slate);font-size:.82rem}
 
-  /* PRODUCT */
-  .product{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
-  .pcard{position:relative;border:1px solid var(--line);border-radius:20px;padding:32px;background:linear-gradient(160deg,rgba(37,99,235,.06),#fff)}
-  .pcard .soon{position:absolute;top:22px;right:22px;font-family:ui-monospace,monospace;font-size:.64rem;letter-spacing:.14em;color:var(--coral);border:1px solid var(--coral);padding:5px 10px;border-radius:999px}
-  .pcard h3{font-family:var(--display);font-weight:600;font-size:1.5rem;margin-bottom:4px}
-  .pcard .price{font-family:ui-monospace,monospace;color:var(--slate);font-size:.86rem;margin-bottom:20px}
-  .pcard ul{list-style:none}
-  .pcard li{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:.6em;color:var(--slate);font-size:.93rem}
-  .pcard li::before{content:"+";color:var(--sky);font-weight:700}
+  .hp-form{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:34px auto 0}
+  .hp-form input,.hp-form textarea{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:12px;font-family:var(--body);font-size:1rem;background:var(--cloud);color:var(--midnight);resize:vertical}
+  .hp-form input:focus,.hp-form textarea:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .hp-form .btn{align-self:center}
+  .hp-status{text-align:center;min-height:1.2em;font-size:.95rem;margin-top:4px}
+  .hp-status.ok{color:#0F766E}.hp-status.err{color:#DC2626}
 
-  /* FAQ */
-  .faq{max-width:760px;margin:42px auto 0}
-  .faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
-  .faq summary{list-style:none;cursor:pointer;padding:20px 22px;font-family:var(--display);font-weight:600;font-size:1.03rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--sky);font-size:1.4rem;font-weight:600;transition:transform .25s}
-  .faq details[open] summary::after{transform:rotate(45deg)}
-  .faq .a{padding:0 22px 20px;color:var(--slate)}
-
-  /* SUBSCRIBE */
-  .sub{background:var(--grad);border-radius:26px;padding:56px 40px;text-align:center;color:#fff}
-  .sub h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.01em}
-  .sub p{color:rgba(255,255,255,.9);margin:10px auto 26px;max-width:42ch}
-  .sub-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-  .sub-form input{flex:1;min-width:200px;border:0;border-radius:999px;padding:14px 22px;font-family:var(--body);font-size:.95rem}
-  .sub-form .btn{background:var(--midnight);color:#fff}
-  .sub .note{font-size:.78rem;color:rgba(255,255,255,.8);margin-top:14px}
-
-  /* FINAL */
   .final{position:relative;color:var(--midnight);text-align:center;overflow:hidden}
   .final-bg{position:absolute;inset:0;z-index:0;background:url('/img/sky.webp') center/cover}
   .final-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(58% 58% at 50% 44%,rgba(248,250,252,.55),transparent 72%)}
-  .final .wrap{position:relative;z-index:5;padding:120px 28px}
+  .final .wrap{position:relative;z-index:5;padding:110px 28px}
   .final img.logo{width:62px;margin:0 auto 22px}
-  .final h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.01em;max-width:18ch;margin:0 auto .4em}
+  .final h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.01em;max-width:20ch;margin:0 auto .4em}
   .final h2 b{color:var(--coral)}
-  .final p{color:#475569;max-width:42ch;margin:0 auto 2em}
+  .final p{color:#475569;max-width:44ch;margin:0 auto 2em}
   .final .cta-row{justify-content:center}
 
   footer{background:var(--midnight);color:#94A3B8;padding:46px 0}
@@ -168,16 +131,14 @@
   footer .meta{font-family:ui-monospace,monospace;font-size:.72rem;width:100%;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
 
   @media (max-width:860px){
-    .values,.dirs,.stats,.reviews{grid-template-columns:repeat(2,1fr)}
-    .benefits,.country-grid,.product{grid-template-columns:1fr;gap:26px}
+    .dirs,.reviews{grid-template-columns:repeat(2,1fr)}
+    .benefits,.pain,.price-grid{grid-template-columns:1fr}
     .steps{grid-template-columns:repeat(2,1fr)}
-    .values{margin-top:-34px}
   }
   @media (max-width:900px){.nav-links{display:none}.burger{display:block}}
   @media (max-width:560px){
-    .values,.dirs,.stats,.reviews,.steps{grid-template-columns:1fr}
-    .band{padding:62px 0}.wrap{padding:0 20px}
-    .bip,.sub{padding:40px 26px}
+    .dirs,.reviews,.steps{grid-template-columns:1fr}
+    .band{padding:56px 0}.wrap{padding:0 20px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
 </style>
@@ -189,7 +150,7 @@
   <div class="nav-links">
     <a href="/montazh">Монтаж</a><a href="/uslugi">Услуги</a><a href="/bloger">Стать блогером</a><a href="/zarabotok">Заработок на ИИ</a><a href="/strany">Страны</a><a href="/udalyonka">Удалёнка</a><a href="/poleznoe">Полезное</a>
   </div>
-  <a class="nav-cta" href="/pichugster-ai-start.pdf" download>Забрать гайд</a>
+  <a class="nav-cta" href="#order">Заказать монтаж</a>
   <button class="burger" aria-label="Меню">☰</button>
 </nav>
 
@@ -199,142 +160,103 @@
   <div class="wrap">
     <span class="eyebrow">the sky has no borders<b>.</b></span>
     <h1>Монтаж Reels с нейросетями</h1>
-    <p class="lede">Делаем цепляющие ролики, которые досматривают — быстро и с помощью ИИ. Закажите под ключ или научитесь монтировать сами.</p>
+    <p class="lede">Смонтируем цепляющий ролик, который досматривают — за 1–2 дня. Для экспертов, блогеров и бизнеса.</p>
+    <div class="hero-price">от 500 ₽ за ролик</div>
     <div class="cta-row">
-      <a class="btn btn-primary" href="/montazh#order">🎬 Заказать монтаж</a>
+      <a class="btn btn-primary" href="#order">🎬 Заказать монтаж</a>
       <a class="btn btn-ghost" href="/montazh#services">📘 Научиться самому</a>
     </div>
   </div>
   <div class="scroll"></div>
 </header>
 
-<!-- TWO PATHS -->
-<section style="padding:64px 0;background:#F8FAFC">
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:30px">
-      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:1.9rem;color:#0F172A;letter-spacing:-.01em;margin-bottom:8px">Монтаж под ключ — или научитесь сами</div>
-      <p style="color:#64748B;font-size:1.05rem;max-width:580px;margin:0 auto">Закажите цепляющие Reels и ролики с нейросетями — или освойте монтаж по нашим гайдам и зарабатывайте сами.</p>
-    </div>
-    <div class="tp-grid">
-      <a class="tp-card" href="/montazh#order">
-        <div style="font-size:2rem">🎬</div>
-        <div class="tp-h">Заказать монтаж</div>
-        <p class="tp-p">Смонтируем Reels и ролики, которые досматривают — быстро и с помощью ИИ.</p>
-        <span class="tp-l">Оставить заявку →</span>
-      </a>
-      <a class="tp-card" href="/montazh#services">
-        <div style="font-size:2rem">📘</div>
-        <div class="tp-h">Научиться монтировать</div>
-        <p class="tp-p">Пошаговые гайды и разборы — освойте монтаж Reels с нуля и делайте сами.</p>
-        <span class="tp-l">Начать учиться →</span>
-      </a>
-    </div>
-  </div>
-  <style>
-    .tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto}
-    .tp-card{display:block;border:1px solid #E8ECF3;border-radius:18px;background:#fff;padding:28px;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s,border-color .25s}
-    .tp-card:hover{transform:translateY(-4px);border-color:#c7d2fe;box-shadow:0 18px 38px -26px rgba(37,99,235,.55)}
-    .tp-h{font-family:'Quicksand',sans-serif;font-weight:700;font-size:1.3rem;color:#0F172A;margin:12px 0 8px}
-    .tp-p{color:#64748B;margin-bottom:14px;font-size:.98rem}
-    .tp-l{color:#2563EB;font-weight:600}
-    @media(max-width:680px){.tp-grid{grid-template-columns:1fr}}
-  </style>
-</section>
-
-<!-- VALUES -->
-<section class="band" style="padding-top:0">
+<!-- БОЛЬ → РЕШЕНИЕ -->
+<section class="band" style="padding-bottom:0">
   <div class="wrap">
-    <div class="values">
-      <div class="val"><div class="ic">🎬</div><h3>Монтаж под ключ</h3><p>Смонтируем Reels и ролики с нейросетями — быстро и качественно.</p></div>
-      <div class="val"><div class="ic">📘</div><h3>Научитесь монтировать</h3><p>Пошаговые гайды и разборы — осваивайте монтаж и делайте сами.</p></div>
-      <div class="val"><div class="ic">🌍</div><h3>Работайте откуда угодно</h3><p>Навык, который кормит из любой точки мира.</p></div>
+    <div class="pain">
+      <div class="pain-col">
+        <div class="sec-label" style="color:var(--coral)">Знакомо?</div>
+        <ul class="pain-list">
+          <li>Монтируешь сам — уходит весь вечер</li>
+          <li>Ролики не досматривают до конца</li>
+          <li>Нет времени разбираться в программах</li>
+        </ul>
+      </div>
+      <div class="pain-col solution">
+        <div class="sec-label">Решение</div>
+        <h3>Отдайте монтаж нам</h3>
+        <p>Сделаем цепляющий Reels с хуком, динамикой и субтитрами — быстро и с помощью нейросетей. Вы получаете готовый ролик, который смотрят до конца.</p>
+        <a class="btn btn-primary" href="#order">Заказать монтаж</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="band" style="padding-top:6px;padding-bottom:6px">
+<!-- ЧТО МОНТИРУЕМ -->
+<section class="band" id="formats">
   <div class="wrap">
-    <div class="stats">
-      <div class="stat"><div class="num">9</div><div class="lbl">форматов монтажа</div></div>
-      <div class="stat"><div class="num">1–2</div><div class="lbl">дня на ролик</div></div>
-      <div class="stat"><div class="num">500₽</div><div class="lbl">от · за работу</div></div>
-      <div class="stat"><div class="num">2</div><div class="lbl">пути: заказать или учиться</div></div>
+    <div class="sec-label">Что монтируем</div>
+    <h2 class="sec-title">Форматы под вашу задачу</h2>
+    <div class="dirs">
+      <div class="dir"><div class="ic">🎤</div><h3>Reels для эксперта</h3><p>Говорящая голова, субтитры, динамика.</p></div>
+      <div class="dir"><div class="ic">🛍️</div><h3>Reels для товара</h3><p>Продукт, выгоды, призыв к покупке.</p></div>
+      <div class="dir"><div class="ic">✨</div><h3>Reels с AI-эффектами</h3><p>AI-переходы, оживление фото, эффекты.</p></div>
+      <div class="dir"><div class="ic">📹</div><h3>Продающий ролик</h3><p>Реклама услуги или товара.</p></div>
+      <div class="dir"><div class="ic">🔁</div><h3>Было / стало</h3><p>Показываем сырьё и готовый результат.</p></div>
+      <div class="dir"><div class="ic">🖼️</div><h3>Обложки и превью</h3><p>Кликабельные обложки для Reels.</p></div>
     </div>
+    <div style="margin-top:26px"><a class="btn btn-ghost dark" href="/montazh">Смотреть портфолио →</a></div>
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="band" id="benefits">
+<!-- ПОЧЕМУ МЫ -->
+<section class="band" id="benefits" style="padding-top:0">
   <div class="wrap">
     <div class="sec-label">Почему мы</div>
-    <h2 class="sec-title">Ролики, которые досматривают</h2>
-    <p class="sec-intro">Монтаж с хуком, динамикой и нейросетями — под задачу: заказать под ключ или научиться делать самому.</p>
+    <h2 class="sec-title">Монтаж, который удерживает</h2>
     <div class="benefits">
-      <div class="ben"><div class="ck">✓</div><div><h3>Досматривают до конца</h3><p>Хук, темп, субтитры и акценты — там, где нужно.</p></div></div>
-      <div class="ben"><div class="ck">✓</div><div><h3>Быстро и с ИИ</h3><p>Нейросети ускоряют: субтитры, нарезка, эффекты.</p></div></div>
-      <div class="ben"><div class="ck">✓</div><div><h3>Два пути</h3><p>Закажите под ключ — или научитесь монтировать сами.</p></div></div>
-      <div class="ben"><div class="ck">✓</div><div><h3>Честные цена и сроки</h3><p>От 500 ₽, 1–2 дня, без сюрпризов.</p></div></div>
+      <div class="ben"><div class="ck">⚡</div><div><h3>Быстро — 1–2 дня</h3><p>Не ждёте неделями. Срочные — обсуждаем.</p></div></div>
+      <div class="ben"><div class="ck">🤖</div><div><h3>С нейросетями</h3><p>AI ускоряет: субтитры, нарезка, эффекты.</p></div></div>
+      <div class="ben"><div class="ck">💰</div><div><h3>Честные цены</h3><p>От 500 ₽, всё прозрачно, без сюрпризов.</p></div></div>
+      <div class="ben"><div class="ck">🎯</div><div><h3>Два пути</h3><p>Сделаем за вас — или научим монтировать.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- DIRECTIONS -->
-<section class="band" id="dirs" style="padding-top:20px">
-  <div class="wrap">
-    <div class="sec-label">Разделы</div>
-    <h2 class="sec-title">Ядро — монтаж, вокруг — остальное</h2>
-    <p class="sec-intro">Монтаж Reels в центре. А рядом — всё для удалённого дохода и жизни.</p>
-    <div class="dirs">
-      <a class="dir" href="/montazh"><div class="ic">🎬</div><h3>Монтаж Reels</h3><p>Портфолио, цены, заявка. Под ключ или учись сам.</p><span class="go">Открыть →</span></a>
-      <a class="dir" href="/uslugi"><div class="ic">🤖</div><h3>AI-услуги</h3><p>Карточки, видео, дизайн с нейросетями.</p><span class="go">Смотреть →</span></a>
-      <a class="dir" href="/bloger"><div class="ic">📸</div><h3>Стать блогером</h3><p>Instagram-блог: Reels, упаковка, рост.</p><span class="go">Начать →</span></a>
-      <a class="dir" href="/zarabotok"><div class="ic">💡</div><h3>Заработок на ИИ</h3><p>Как зарабатывать с нейросетями.</p><span class="go">Учиться →</span></a>
-      <a class="dir" href="/strany"><div class="ic">🌍</div><h3>Страны</h3><p>Где жить и работать удалённо.</p><span class="go">Каталог →</span></a>
-      <a class="dir" href="/udalyonka"><div class="ic">🌐</div><h3>Удалёнка</h3><p>Клиенты, цены, поток работы.</p><span class="go">Скоро →</span></a>
-      <a class="dir" href="/poleznoe"><div class="ic">🗂️</div><h3>Полезное</h3><p>Промпты, шаблоны, чек-листы.</p><span class="go">Скоро →</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- COUNTRY -->
-<section class="band country" id="country">
-  <div class="wrap">
-    <div class="country-grid">
-      <div>
-        <div class="sec-label">Бонус к свободе</div>
-        <h2 class="sec-title">Куда переехать и работать удалённо</h2>
-        <p class="sec-intro">Освоили навык — выбирайте, где жить. Сравнивайте страны по визе, стоимости жизни, интернету и комьюнити.</p>
-        <div class="chips"><span class="chip">🇻🇳 Вьетнам</span><span class="chip">🇬🇪 Грузия</span><span class="chip">🇹🇭 Таиланд</span><span class="chip">🇷🇸 Сербия</span><span class="chip">🇦🇪 ОАЭ</span></div>
-        <a class="btn btn-primary" href="/strany">Сравнить страны →</a>
-      </div>
-      <img src="/img/city.webp" alt="Тропический город у океана на закате">
-    </div>
-  </div>
-</section>
-
-<!-- STEPS -->
-<section class="band" id="steps">
+<!-- КАК РАБОТАЕМ -->
+<section class="band" id="steps" style="padding-top:0">
   <div class="wrap">
     <div class="sec-label">Как мы работаем</div>
     <h2 class="sec-title">От заявки до готового ролика</h2>
-    <p class="sec-intro">Четыре простых шага — и ваш Reels готов.</p>
     <div class="steps">
-      <div class="step"><div class="n">01</div><h3>Заявка</h3><p>Оставьте заявку с задачей на странице монтажа.</p></div>
-      <div class="step"><div class="n">02</div><h3>Материал</h3><p>Пришлёте исходники и пожелания по стилю.</p></div>
+      <div class="step"><div class="n">01</div><h3>Заявка</h3><p>Оставьте заявку с задачей.</p></div>
+      <div class="step"><div class="n">02</div><h3>Материал</h3><p>Пришлёте исходники и пожелания.</p></div>
       <div class="step"><div class="n">03</div><h3>Монтаж</h3><p>Смонтируем с нейросетями за 1–2 дня.</p></div>
-      <div class="step"><div class="n">04</div><h3>Правки</h3><p>Доведём до идеала и отдадим готовый ролик.</p></div>
+      <div class="step"><div class="n">04</div><h3>Правки</h3><p>Доведём до идеала и отдадим ролик.</p></div>
     </div>
   </div>
 </section>
 
+<!-- ЦЕНЫ -->
+<section class="band" id="prices" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-label">Цены</div>
+    <h2 class="sec-title">Понятные пакеты</h2>
+    <p class="sec-intro">Точная цена зависит от сложности — обсудим в заявке.</p>
+    <div class="price-grid">
+      <div class="price-card"><h3>Обложка</h3><div class="pp">от 500 ₽</div><p>Кликабельное превью для Reels.</p><a class="btn btn-ghost dark" href="#order">Заказать</a></div>
+      <div class="price-card feat"><h3>Reels</h3><div class="pp">от 1 500 ₽</div><p>Монтаж вертикального ролика с субтитрами.</p><a class="btn btn-primary" href="#order">Заказать</a></div>
+      <div class="price-card"><h3>Продающий ролик</h3><div class="pp">от 3 000 ₽</div><p>Реклама услуги или товара под ключ.</p><a class="btn btn-ghost dark" href="#order">Заказать</a></div>
+    </div>
+  </div>
+</section>
 
-<!-- REVIEWS -->
-<section class="band" id="reviews">
+<!-- ОТЗЫВЫ -->
+<section class="band" id="reviews" style="padding-top:0">
   <div class="wrap">
     <div class="sec-label">Отзывы</div>
     <h2 class="sec-title">Что говорят</h2>
-    <p class="sec-intro">Здесь появятся реальные отзывы клиентов. Ниже — примеры оформления, заменим их на настоящие.</p>
+    <p class="sec-intro">Здесь появятся реальные отзывы клиентов. Ниже — примеры оформления.</p>
     <div class="reviews">
       <div class="rev"><span class="ph">пример</span><p>«Смонтировали Reels — досмотры выросли, пришли первые заявки. Быстро и по делу».</p><div class="who"><div class="av">А</div><div><div class="nm">Имя Фамилия</div><div class="ro">эксперт, наставник</div></div></div></div>
       <div class="rev"><span class="ph">пример</span><p>«Заказывал монтаж под товар для маркетплейса — динамично, с акцентами. Конверсия выше».</p><div class="who"><div class="av">М</div><div><div class="nm">Имя Фамилия</div><div class="ro">продавец на WB</div></div></div></div>
@@ -343,71 +265,34 @@
   </div>
 </section>
 
-<!-- PRODUCT -->
-<section class="band" id="product" style="background:#fff;border-top:1px solid var(--line)">
+<!-- ЗАЯВКА -->
+<section class="band" id="order" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="product">
-      <div>
-        <div class="sec-label">Обучение</div>
-        <h2 class="sec-title">Гайд: Монтаж Reels с нуля</h2>
-        <p class="sec-intro">Пошаговая система: как монтировать Reels, которые досматривают — со структурой, приёмами и нейросетями. Доступ появится здесь позже.</p>
-      </div>
-      <div class="pcard">
-        <span class="soon">скоро</span>
-        <h3>Что внутри</h3>
-        <div class="price">500 ₽ · PDF / видео / шаблоны</div>
-        <ul>
-          <li>Структура Reels, который досматривают</li>
-          <li>Монтаж, субтитры и звук по шагам</li>
-          <li>AI-инструменты для ускорения</li>
-          <li>Готовые пресеты и приёмы</li>
-        </ul>
-      </div>
+    <div class="center" style="max-width:560px">
+      <div class="sec-label">Заявка</div>
+      <h2 class="sec-title">Закажите монтаж</h2>
+      <p class="sec-intro" style="margin:10px auto 0">Оставьте заявку — ответим и обсудим задачу. Ни к чему не обязывает.</p>
     </div>
+    <form id="order-form" action="https://formspree.io/f/REPLACE_ME" method="POST" class="hp-form">
+      <input type="hidden" name="_subject" value="Новая заявка на монтаж — главная">
+      <input type="text" name="name" placeholder="Как вас зовут" required>
+      <input type="text" name="contact" placeholder="Telegram или почта для связи" required>
+      <textarea name="message" rows="4" placeholder="Что нужно смонтировать? Ссылка на материал, если есть." required></textarea>
+      <button type="submit" class="btn btn-primary">Отправить заявку</button>
+      <p id="order-status" class="hp-status"></p>
+    </form>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="band" id="faq">
-  <div class="wrap">
-    <div class="center" style="max-width:760px">
-      <div class="sec-label">Вопросы</div>
-      <h2 class="sec-title">Частые вопросы</h2>
-    </div>
-    <div class="faq">
-      <details open><summary>Сколько стоит монтаж?</summary><div class="a">От 500 ₽ за обложку и от 1 500 ₽ за Reels — точная цена зависит от формата и сложности. Все цены есть на странице монтажа.</div></details>
-      <details><summary>Какие сроки?</summary><div class="a">Обычно 1–2 дня на ролик. Срочные задачи обсуждаем отдельно.</div></details>
-      <details><summary>Что нужно прислать?</summary><div class="a">Исходные видео или фото и пожелания по стилю. Если материала нет — подскажем, как снять на телефон.</div></details>
-      <details><summary>А можно научиться монтировать самому?</summary><div class="a">Да. По каждому формату будет пошаговый гайд за 500 ₽ — сделаете сами. Выбирайте: заказать у нас или освоить навык.</div></details>
-      <details><summary>Это не инфоцыганство?</summary><div class="a">Нет. Показываем реальные работы и честные цены. Делаем под ключ и учим по делу, без воды.</div></details>
-    </div>
-  </div>
-</section>
-
-<!-- SUBSCRIBE -->
-<section class="band">
-  <div class="wrap">
-    <div class="sub">
-      <h2>Заберите первый гайд бесплатно</h2>
-      <p>Подпишитесь — пришлём стартовый гайд и будем присылать рабочие материалы по монтажу и AI.</p>
-      <div class="sub-form">
-        <input type="email" placeholder="ваш email" aria-label="email">
-        <button class="btn" type="button">Забрать гайд</button>
-      </div>
-      <div class="note">Без спама. Отписаться можно в один клик. (Форма подключится к рассылке позже.)</div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL -->
+<!-- ФИНАЛ -->
 <section class="final">
   <div class="final-bg"></div>
   <div class="wrap">
     <img class="logo" src="/logo.png" alt="pichugster">
-    <h2>The sky has no borders<b>.</b></h2>
-    <p>Закажите монтаж или научитесь монтировать сами — и работайте откуда угодно.</p>
+    <h2>Ролики, которые<br>досматривают<b>.</b></h2>
+    <p>Закажите монтаж Reels с нейросетями — или научитесь монтировать сами.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="/montazh#order">Заказать монтаж</a>
+      <a class="btn btn-primary" href="#order">Заказать монтаж</a>
       <a class="btn btn-ghost dark" href="#">Telegram-канал</a>
     </div>
   </div>
@@ -416,7 +301,7 @@
 <footer>
   <div class="wrap">
     <b>pichugster</b>
-    <div class="links"><a href="/montazh">Монтаж</a><a href="/uslugi">Услуги</a><a href="/zarabotok">Заработок</a><a href="/strany">Страны</a><a href="#faq">Вопросы</a></div>
+    <div class="links"><a href="/montazh">Монтаж</a><a href="/uslugi">Услуги</a><a href="/zarabotok">Заработок</a><a href="/strany">Страны</a><a href="/bloger">Блогинг</a></div>
     <div class="meta">© 2026 pichugster · the sky has no borders</div>
   </div>
 </footer>
@@ -429,6 +314,23 @@
     if(!open){Object.assign(l.style,{position:'absolute',top:'56px',left:'0',right:'0',flexDirection:'column',gap:'0',background:'#fff',borderBottom:'1px solid var(--line)',padding:'8px 0'});
       l.querySelectorAll('a').forEach(function(a){a.style.padding='12px 28px'});}
   });
+</script>
+<script is:inline>
+  (function(){
+    var form=document.getElementById('order-form');
+    var statusEl=document.getElementById('order-status');
+    if(!form) return;
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      if(form.action.indexOf('REPLACE_ME')>-1){statusEl.textContent='Форма ещё не подключена.';statusEl.className='hp-status err';return;}
+      statusEl.textContent='Отправляю…';statusEl.className='hp-status';
+      try{
+        var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+        if(res.ok){form.reset();statusEl.textContent='Заявка отправлена — скоро ответим. Спасибо!';statusEl.className='hp-status ok';}
+        else{statusEl.textContent='Не удалось отправить. Попробуйте позже.';statusEl.className='hp-status err';}
+      }catch(err){statusEl.textContent='Не удалось отправить. Проверьте соединение.';statusEl.className='hp-status err';}
+    });
+  })();
 </script>
 </body>
 </html>
