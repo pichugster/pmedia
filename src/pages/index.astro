@@ -324,7 +324,7 @@
     if(!form) return;
     form.addEventListener('submit',async function(e){
       e.preventDefault();
-      if(form.action.indexOf('xgojalqr')>-1){statusEl.textContent='Форма ещё не подключена.';statusEl.className='hp-status err';return;}
+      if(form.action.indexOf('REPLACE_ME')>-1){statusEl.textContent='Форма ещё не подключена.';statusEl.className='hp-status err';return;}
       statusEl.textContent='Отправляю…';statusEl.className='hp-status';
       try{
         var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
