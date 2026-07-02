@@ -48,7 +48,7 @@
   .brand b{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
   .nav-links{display:flex;gap:22px;font-size:.92rem;color:var(--slate)}
   .nav-links a:hover{color:var(--midnight)}
-  .nav-cta{font-family:var(--display);font-weight:600;font-size:.86rem;background:var(--sky);color:#fff;padding:9px 18px;border-radius:999px}
+  .nav-cta{font-family:var(--display);font-weight:600;font-size:.86rem;background:var(--sky);color:#fff;padding:9px 18px;border-radius:999px;white-space:nowrap}
   .burger{display:none;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--midnight)}
 
   .hero{position:relative;min-height:82vh;display:flex;align-items:center;color:#fff;overflow:hidden}
@@ -136,6 +136,7 @@
     .steps{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:900px){.nav-links{display:none}.burger{display:block}}
+  @media (max-width:600px){.nav-cta{display:none}}
   @media (max-width:560px){
     .dirs,.reviews,.steps{grid-template-columns:1fr}
     .band{padding:56px 0}.wrap{padding:0 20px}
@@ -273,11 +274,12 @@
       <h2 class="sec-title">Закажите монтаж</h2>
       <p class="sec-intro" style="margin:10px auto 0">Оставьте заявку — ответим и обсудим задачу. Ни к чему не обязывает.</p>
     </div>
-    <form id="order-form" action="https://formspree.io/f/REPLACE_ME" method="POST" class="hp-form">
+    <form id="order-form" action="https://formspree.io/f/xgojalqr" method="POST" class="hp-form">
       <input type="hidden" name="_subject" value="Новая заявка на монтаж — главная">
-      <input type="text" name="name" placeholder="Как вас зовут" required>
-      <input type="text" name="contact" placeholder="Telegram или почта для связи" required>
-      <textarea name="message" rows="4" placeholder="Что нужно смонтировать? Ссылка на материал, если есть." required></textarea>
+      <input type="text" name="name" placeholder="Как вас зовут *" required>
+      <input type="text" name="contact" placeholder="Telegram или почта для связи *" required>
+      <input type="tel" name="phone" placeholder="Телефон *" required>
+      <textarea name="message" rows="4" placeholder="Что нужно смонтировать? Ссылка на материал, если есть. *" required></textarea>
       <button type="submit" class="btn btn-primary">Отправить заявку</button>
       <p id="order-status" class="hp-status"></p>
     </form>
@@ -322,7 +324,7 @@
     if(!form) return;
     form.addEventListener('submit',async function(e){
       e.preventDefault();
-      if(form.action.indexOf('REPLACE_ME')>-1){statusEl.textContent='Форма ещё не подключена.';statusEl.className='hp-status err';return;}
+      if(form.action.indexOf('xgojalqr')>-1){statusEl.textContent='Форма ещё не подключена.';statusEl.className='hp-status err';return;}
       statusEl.textContent='Отправляю…';statusEl.className='hp-status';
       try{
         var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
